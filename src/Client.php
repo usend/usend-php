@@ -22,6 +22,7 @@ use Usend\Resources\Segments;
 use Usend\Resources\Suppressions;
 use Usend\Resources\Templates;
 use Usend\Resources\Tools;
+use Usend\Resources\ShortLinks;
 use Usend\Resources\Topics;
 use Usend\Resources\Webhooks;
 
@@ -33,7 +34,7 @@ use Usend\Resources\Webhooks;
  */
 final class Client
 {
-    public const VERSION = '1.0.0';
+    public const VERSION = '1.3.0';
     public const DEFAULT_BASE_URL = 'https://api.usend.et';
 
     public readonly string $baseUrl;
@@ -53,6 +54,7 @@ final class Client
     public readonly Contacts $contacts;
     public readonly Segments $segments;
     public readonly Topics $topics;
+    public readonly ShortLinks $shortLinks;
     public readonly Audiences $audiences;
     public readonly Broadcasts $broadcasts;
     public readonly Webhooks $webhooks;
@@ -101,6 +103,7 @@ final class Client
         $this->contacts = new Contacts($http);
         $this->segments = new Segments($http);
         $this->topics = new Topics($http);
+        $this->shortLinks = new ShortLinks($http);
         $this->audiences = new Audiences($http);
         $this->broadcasts = new Broadcasts($http);
         $this->webhooks = new Webhooks($http);

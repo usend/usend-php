@@ -135,6 +135,14 @@ foreach ([true, false] as $useCurl) {
     eq("$label inboxes", '/inbound/emails', $r['uri']);
     $r = $client->topics->remove('t1');
     eq("$label topics remove", 'DELETE /topics/t1', $r['method'] . ' ' . $r['uri']);
+    $r = $client->shortLinks->create(['target_url' => 'https://example.com', 'code' => 'abc']);
+    eq("$label short link create", ['POST /short-links', ['target_url' => 'https://example.com', 'code' => 'abc']], [$r['method'] . ' ' . $r['uri'], json_decode($r['body'], true)]);
+    $r = $client->shortLinks->stats('l 1', 7);
+    eq("$label short link stats", '/short-links/l%201/stats?days=7', $r['uri']);
+    $r = $client->shortLinks->update('l1', ['disabled' => true, 'expires_at' => null]);
+    eq("$label short link update", ['PATCH /short-links/l1', ['disabled' => true, 'expires_at' => null]], [$r['method'] . ' ' . $r['uri'], json_decode($r['body'], true)]);
+    $r = $client->shortLinks->remove('l1');
+    eq("$label short link remove", 'DELETE /short-links/l1', $r['method'] . ' ' . $r['uri']);
     $r = $client->audiences->createContact('a1', ['email' => 'x@y.com']);
     eq("$label audience contact", '/audiences/a1/contacts', $r['uri']);
     $r = $client->emails->events("e1");

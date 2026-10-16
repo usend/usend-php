@@ -1,0 +1,27 @@
+{
+  "name": "usend/usend",
+  "description": "Official PHP SDK for usend, the email API for developers. No dependencies.",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://usend.et",
+  "keywords": ["email", "usend", "smtp", "transactional", "api"],
+  "support": {
+    "docs": "https://usend.et/docs",
+    "source": "https://github.com/usend/usend-php"
+  },
+  "require": {
+    "php": ">=8.1",
+    "ext-json": "*"
+  },
+  "suggest": {
+    "ext-curl": "Preferred HTTP transport; without it the SDK falls back to PHP streams"
+  },
+  "autoload": {
+    "psr-4": {
+      "Usend\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "php tests/run.php"
+  }
+}
